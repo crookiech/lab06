@@ -1,44 +1,37 @@
 #include "GraphicPrimitive.h"
-#include "Document.h"
+#include "Controller.h"
 
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    std::cout << "Создание документа: " << std::endl;
-    Document document;
-    document.setName("мой документ");
-    document.setPath("C:\\programming");
+    Controller controller;
+
+    std::cout << "Создание нового документа: " << std::endl;
+    controller.createDocument("Мой документ", "/path/to/document");
     std::cout << std::endl;
 
-    std::cout << "Создание графических примитивов: " << std::endl;
-    auto circle = std::make_shared<Circle>(3);
-    auto rectangle = std::make_shared<Rectangle>(4, 5);
-    auto square = std::make_shared<Square>(6);
+    std::cout << "Добавление графических примитивов: " << std::endl;
+    controller.addGraphicPrimitive("круг", 5.0); // добавляем круг с радиусом 5.0
+    controller.addGraphicPrimitive("прямоугольник", 10.0, 20.0); // добавляем прямоугольник 10x20
+    controller.addGraphicPrimitive("квадрат", 15.0); // добавляем квадрат со стороной 15.0
     std::cout << std::endl;
 
-    std::cout << "Проверка параметров графических примитивов: " << std::endl;
-    circle->getFigureName();
-    circle->getRadius();
-    rectangle->getLength();
-    rectangle->getWidth();
-    square->getLength();
-    square->getWidth();
-    square->setLength(1);
+    std::cout << "Показать информацию о текущем документе: " << std::endl;
+    controller.showCurrentDocumentInfo();
     std::cout << std::endl;
 
-    std::cout << "Добавление и удаление графических примитивов в документе: " << std::endl;
-    document.addGraphicPrimitive(circle);
-    document.addGraphicPrimitive(rectangle);
-    document.deleteGraphicPrimitive(rectangle);
-    document.deleteGraphicPrimitive(square);
+    std::cout << "Экспорт документа в файл: " << std::endl;
+    controller.exportDocument("/path/to/exported_document");
     std::cout << std::endl;
 
-    std::cout << "Импортирование и экспортирование документа: " << std::endl;
-    document.importDocument("C:\\programming");
-    document.exportDocument("C:");
-    document.importDocument("C:\\programming");
+    std::cout << "Импорт документа из файла: " << std::endl;
+    controller.importDocument("/path/to/document");
     std::cout << std::endl;
 
-    std::cout << "Вызов деструкторов:" << std::endl;
+    std::cout << "Удаление графического примитива: " << std::endl;
+    controller.deleteGraphicPrimitive("круг");
+    std::cout << std::endl;
+
+    std::cout << "Вызов деструкторов после завершения программы: " << std::endl;
     return 0;
 }

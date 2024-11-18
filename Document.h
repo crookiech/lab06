@@ -34,7 +34,7 @@ public:
     /// @brief гетер id
     /// @return id
     const int getId() {
-        std::cout << "ID документа: \"" << nameDocument << "\" "<< id << std::endl;
+        std::cout << "ID документа \"" << nameDocument << "\": "<< id << std::endl;
         return id;
     }
     /// @brief гетер пути документа
