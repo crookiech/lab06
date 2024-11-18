@@ -1,3 +1,0 @@
-C:/programming/lab06/build/CMakeFiles/lab06.dir
-C:/programming/lab06/build/CMakeFiles/edit_cache.dir
-C:/programming/lab06/build/CMakeFiles/rebuild_cache.dir
