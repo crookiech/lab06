@@ -1,41 +1,44 @@
-#include "architecture.cpp"
+#include "GraphicPrimitive.h"
+#include "Document.h"
 
 int main() {
-    // Создание документа
-    Document doc("Мой документ", "/path/to/document");
+    setlocale(LC_ALL, "Russian");
 
-    // Создание графических примитивов
-    Circle circle1(5.0);
-    Rectangle rectangle1(10.0, 5.0);
-    Square square1(4.0);
+    std::cout << "Создание документа: " << std::endl;
+    Document document;
+    document.setName("мой документ");
+    document.setPath("C:\\programming");
+    std::cout << std::endl;
 
-    // // Добавление графических примитивов в документ
-    // doc.addGraphicPrimitive(circle1);
-    // doc.addGraphicPrimitive(rectangle1);
-    // doc.addGraphicPrimitive(square1);
+    std::cout << "Создание графических примитивов: " << std::endl;
+    auto circle = std::make_shared<Circle>(3);
+    auto rectangle = std::make_shared<Rectangle>(4, 5);
+    auto square = std::make_shared<Square>(6);
+    std::cout << std::endl;
 
-    // Проверка свойств графических примитивов
-    circle1.getRadius();
-    rectangle1.getLength();
-    rectangle1.getWidth();
-    square1.getLength();
+    std::cout << "Проверка параметров графических примитивов: " << std::endl;
+    circle->getFigureName();
+    circle->getRadius();
+    rectangle->getLength();
+    rectangle->getWidth();
+    square->getLength();
+    square->getWidth();
+    square->setLength(1);
+    std::cout << std::endl;
 
-    // Изменение свойств графических примитивов
-    circle1.setRadius(7.0);
-    rectangle1.setLength(12.0);
-    rectangle1.setWidth(6.0);
-    square1.setLength(5.0);
+    std::cout << "Добавление и удаление графических примитивов в документе: " << std::endl;
+    document.addGraphicPrimitive(circle);
+    document.addGraphicPrimitive(rectangle);
+    document.deleteGraphicPrimitive(rectangle);
+    document.deleteGraphicPrimitive(square);
+    std::cout << std::endl;
 
-    // // Удаление графического примитива
-    // doc.deleteGraphicPrimitive(circle1);
-    
-    // Попытка удалить несуществующий примитив
-    auto circle2 = std::make_shared<Circle>(3.0); // Новый круг с другим ID
-    doc.deleteGraphicPrimitive(circle2);
+    std::cout << "Импортирование и экспортирование документа: " << std::endl;
+    document.importDocument("C:\\programming");
+    document.exportDocument("C:");
+    document.importDocument("C:\\programming");
+    std::cout << std::endl;
 
-    // Экспорт и импорт документа
-    doc.exportDoc("/path/to/exported/document");
-    doc.importDoc("/path/to/imported/document");
-
+    std::cout << "Вызов деструкторов:" << std::endl;
     return 0;
 }
