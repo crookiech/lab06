@@ -81,9 +81,8 @@ public:
     /// @param figure примитив
     void deleteGraphicPrimitive(std::shared_ptr<GraphicPrimitive> figure) {
         bool found = false; // нашелся ли примитив в документе
-        for (auto it = graphicPrimitives.end(); it != graphicPrimitives.begin();) { // итерация по вектору
-            --it;
-            if ((*it)->getFigureName() == figure->getFigureName()) { // если имена совпадают примитивов
+        for (auto it = graphicPrimitives.begin(); it < graphicPrimitives.end(); it++) { // итерация по вектору
+            if ((*it)->getFigureName() == figure->getFigureName()) { // если название примитивов совпадают 
                 found = true; // примитив нашелся
                 graphicPrimitives.erase(it); // удаляем элемент
                 std::cout << "Из документа \"" << nameDocument << "\" (ID: " << id << ") удален графический примитив: " << figure->getFigureName() << " (ID: " << figure->getId() << ")" << std::endl;
